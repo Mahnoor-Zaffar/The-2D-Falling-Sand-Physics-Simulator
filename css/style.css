@@ -340,7 +340,7 @@ html, body {
 
 /* --- Overlays --- */
 #shortcuts-overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: var(--bg-overlay);
   backdrop-filter: blur(4px);

@@ -2,9 +2,12 @@
    input.js — Pointer Handling & Bresenham Brush
    ======================================================================== */
 
-import { GRID_W, GRID_H, AIR, FIRE } from "./constants.js";
+import {
+  GRID_W, GRID_H, AIR, FIRE, STEAM,
+  FIRE_LIFETIME_MIN, FIRE_LIFETIME_MAX,
+  STEAM_LIFETIME_MIN, STEAM_LIFETIME_MAX,
+} from "./constants.js";
 import { currentGrid, inBounds, cellId, packCell, randInt } from "./grid.js";
-import { FIRE_LIFETIME_MIN, FIRE_LIFETIME_MAX } from "./constants.js";
 
 let activeElement = 1; // Default Sand
 let brushSize = 3;
@@ -53,6 +56,8 @@ function spawnBrush(cx, cy) {
         if (cellId(grid[gi]) === AIR) {
           if (activeElement === FIRE) {
             grid[gi] = packCell(FIRE, randInt(FIRE_LIFETIME_MIN, FIRE_LIFETIME_MAX));
+          } else if (activeElement === STEAM) {
+            grid[gi] = packCell(STEAM, randInt(STEAM_LIFETIME_MIN, STEAM_LIFETIME_MAX));
           } else {
             grid[gi] = packCell(activeElement, 0);
           }
