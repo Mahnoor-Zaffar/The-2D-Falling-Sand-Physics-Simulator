@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A real-time 2D falling sand physics simulator built with vanilla JavaScript and HTML5 Canvas. Features 8 cellular automata elements.">
+  <title>Falling Sand — Physics Simulator</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Minimal inline SVG favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <header id="header">
+      <h1 id="title">
+        <span class="title-icon">⚗️</span>
+        <span>Falling Sand</span>
+        <span class="title-tag">Physics Simulator</span>
+      </h1>
+      <div id="fps-display">
+        <span class="fps-label">FPS</span>
+        <span id="fps-value">0</span>
+      </div>
+    </header>
+
+    <main id="main">
+      <div id="canvas-wrapper">
+        <canvas id="sim-canvas"></canvas>
+        <div id="canvas-overlay" class="hidden">
+          <span>Click & Drag to Spawn</span>
+        </div>
+      </div>
+
+      <aside id="toolbar">
+        <section class="tool-section">
+          <h2 class="section-label">Elements</h2>
+          <!-- Populated dynamically by ui.js based on constants.js -->
+          <div id="element-buttons" class="button-grid"></div>
+        </section>
+
+        <section class="tool-section">
+          <h2 class="section-label">Settings</h2>
+          <div class="slider-row" title="Brush Size">
+            <span class="slider-icon">🖌️</span>
+            <input type="range" id="brush-size" min="1" max="15" value="3" class="slider">
+            <span id="brush-size-value" class="slider-value">3</span>
+          </div>
+          <div class="slider-row" title="Simulation Speed">
+            <span class="slider-icon">⚡</span>
+            <input type="range" id="sim-speed" min="1" max="4" value="1" class="slider">
+            <span id="sim-speed-value" class="slider-value">1×</span>
+          </div>
+        </section>
+
+        <section class="tool-section">
+          <h2 class="section-label">Actions</h2>
+          <div class="action-buttons">
+            <div class="action-row">
+              <button id="btn-save" class="action-btn half-btn">
+                <span>💾</span> Save
+              </button>
+              <button id="btn-load" class="action-btn half-btn">
+                <span>📂</span> Load
+              </button>
+            </div>
+            <button id="btn-pause" class="action-btn">
+              <span id="pause-icon">⏸️</span> <span id="pause-label">Pause</span>
+            </button>
+            <button id="btn-clear" class="action-btn danger-btn">
+              <span>🗑️</span> Clear All
+            </button>
+            <button id="btn-help" class="action-btn ghost-btn">
+              <span>❓</span> Shortcuts
+            </button>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <!-- Keyboard Shortcuts Overlay -->
+    <div id="shortcuts-overlay" class="hidden">
+      <div class="overlay-card">
+        <h3>Keyboard Shortcuts</h3>
+        <div class="shortcut-list">
+          <div class="shortcut-item"><span>1 – 8</span> <p>Select Element</p></div>
+          <div class="shortcut-item"><span>E</span> <p>Eraser</p></div>
+          <div class="shortcut-item"><span>Space</span> <p>Play / Pause</p></div>
+          <div class="shortcut-item"><span>C</span> <p>Clear Canvas</p></div>
+          <div class="shortcut-item"><span>?</span> <p>Toggle this menu</p></div>
+        </div>
+        <button class="action-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
